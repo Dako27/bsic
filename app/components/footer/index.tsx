@@ -13,31 +13,63 @@ interface SubMenuProps {
   elements: { type: "link" | "text"; label: string; href?: string }[];
 }
   
-  const FooterSubMenu = ({ title, elements }: SubMenuProps) => {
+// Interface pour définir la structure d'un sous-menu complet
+interface FooterSubMenu {
+  title: string;
+  // Nous utilisons le même type que dans SubMenuProps.elements pour assurer la cohérence
+  links: { type: "link" | "text"; label: string; href?: string }[];
+}
 
-    return (
-      <nav className="container md:max-w-64 w-full flex flex-col gap-8 justify-start items-start">
-        <h3 className={`font-bold text-primary ${hostGrotesk.className}`}>{title}</h3>
-        <ul className="flex flex-col gap-2">
-          {elements.map((element, index) => (
-            <li key={index}>
-              {element.type === "link" ? (
-                <Link
-                  href={element.href || "#"} // Utilisation d'un lien par défaut si `href` est absent
-                  className="text-gray-700 ease-in-out duration-150 hover:text-primary"
-                >
-                  {element.label}
-                </Link>
-              ) : (
-                <span className="text-gray-700">{element.label}</span> // Affichage du texte simple
-              )}
-            </li>
-          ))}
-        </ul>
-      </nav>
-    );
-  };  
+  // const FooterSubMenu = ({ title, elements }: SubMenuProps) => {
+
+  //   return (
+  //     <nav className="container md:max-w-64 w-full flex flex-col gap-8 justify-start items-start">
+  //       <h3 className={`font-bold text-primary ${hostGrotesk.className}`}>{title}</h3>
+  //       <ul className="flex flex-col gap-2">
+  //         {elements.map((element, index) => (
+  //           <li key={index}>
+  //             {element.type === "link" ? (
+  //               <Link
+  //                 href={element.href || "#"} // Utilisation d'un lien par défaut si `href` est absent
+  //                 className="text-gray-700 ease-in-out duration-150 hover:text-primary"
+  //               >
+  //                 {element.label}
+  //               </Link>
+  //             ) : (
+  //               <span className="text-gray-700">{element.label}</span> // Affichage du texte simple
+  //             )}
+  //           </li>
+  //         ))}
+  //       </ul>
+  //     </nav>
+  //   );
+  // };  
   
+  
+const FooterSubMenu = ({ title, elements }: SubMenuProps) => {
+  return (
+    <nav className="container md:max-w-64 w-full flex flex-col gap-8 justify-start items-start">
+      <h3 className={`font-bold text-primary ${hostGrotesk.className}`}>{title}</h3>
+      <ul className="flex flex-col gap-2">
+        {elements.map((element, index) => (
+          <li key={index}>
+            {element.type === "link" ? (
+              <Link
+                href={element.href || "#"}
+                className="text-gray-700 ease-in-out duration-150 hover:text-primary"
+              >
+                {element.label}
+              </Link>
+            ) : (
+              <span className="text-gray-700">{element.label}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+
 
 export const Footer = () => {
 
@@ -46,7 +78,7 @@ export const Footer = () => {
 //     AOS.init({ duration: 500, easing: 'ease-out', offset: 100, }); // Options de durée et d'animation lissée
 //   },);
 
-    const footerSubMenus = [
+    const footerSubMenus: FooterSubMenu[] = [
         {
           title: "QUI SOMMES-NOUS",
           links: [
@@ -119,9 +151,13 @@ export const Footer = () => {
                 </div>
             </div>
             <div className="flex relative flex-wrap flex-row gap-16 px-4 pb-12 justify-center items-start">
-                {footerSubMenus.map((subMenu, index) => (
+                {/* {footerSubMenus.map((subMenu, index) => (
                     <FooterSubMenu key={index} title={subMenu.title} elements={subMenu.links} />
-                ))}
+                ))} */}
+                        {footerSubMenus.map((subMenu, index) => (
+          <FooterSubMenu key={index} title={subMenu.title} elements={subMenu.links} />
+        ))}
+
                 <div className="container md:max-w-80 w-full flex flex-col gap-8 justify-center items-center">
                     <Image src={"/images/logo-bsic-2.png"} alt='Logo BSIC' width={150} height={100} />
                     <p className="text-xs text-gray-500">© BSIC BENIN SA. Tous droits réservés. 2011 - 2025</p>
