@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Si tu veux ajouter des styles personnalisés, fais-le ici */
+:root {
+  --color-primary: #0060b7;
+  --color-secondary: #000b9e;
+  --color-tertiary: #F0F8FF;
+}
+@media (max-width: 1155px) {
+    #menu {
+        overflow-y: auto;
+    }
+
+    .hover-parent {
+        max-height: 1.6rem;
+        overflow-y: hidden;
+    }
+
+    .hover-parent:hover {
+        max-height: 15rem !important;
+    }
+
+    .hover-parent:hover .chevron{
+        transform: rotate(180deg);
+    }
+
+    .hover-element {
+        /* position: relative !important; */
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: scale(1) !important;
+    }
+}
+
+.hover-parent:hover .hover-element {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.hover-element {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0); 
+}
+
+
+.hover-parent-second:hover .hover-element-second {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.hover-element-second {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0); 
+}
+
+.swiper-pagination-bullet {
+    margin: 0 !important;
+}
+
+.title
+{
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)); /* Dégradé de couleurs */
+    background-clip: text; /* Applique le dégradé au texte */
+    -ms-background-clip: text; /* Applique le dégradé au texte */
+    -o-background-clip: text; /* Applique le dégradé au texte */
+    -moz-background-clip: text; /* Applique le dégradé au texte */
+    -webkit-background-clip: text; /* Applique le dégradé au texte */
+    color: transparent; /* Masque la couleur de texte pour laisser place au dégradé */
+    display: inline-block;
+}
+
+
+.parallax {
+    height: auto; /* La hauteur de l'élément */
+    background-attachment: fixed; /* Permet l'effet parallax */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
